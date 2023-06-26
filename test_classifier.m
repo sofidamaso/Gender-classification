@@ -16,8 +16,8 @@ function [train_perf, test_perf] = test_classifier(descriptor, labels, cv, k)
   test_labels  = labels(cv.test);
   
   % ADDESTRARE IL CLASSIFICATORE
-  c = fitcknn(train_values, train_labels,'NumNeighbors',k);
-  %c= fitcsvm(train_values,train_labels);        %SVM
+  c = fitcknn(train_values, train_labels,'NumNeighbors',k, 'Distance','euclidean');
+ % c= fitcsvm(train_values,train_labels);        %SVM
   
   train_predicted = predict(c, train_values);
   train_perf = confmat(train_labels, train_predicted);
