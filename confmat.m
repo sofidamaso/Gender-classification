@@ -1,4 +1,9 @@
-
+%Questa funzione utilizza a sua la volta la funzione confusionmat per
+%calcolare la matrice di confusione e ritorna una stuct contenente:
+% 1) la matrice di confusione 
+% 2) la matrice di confusione con valori tra 0 e 1
+% 3) l'elenco ordinato delle labels
+% 4) il valore di accuratezza accuratezza
 function out=confmat(gt,predicted)
 
   [cm_raw,order]=confusionmat(gt(:),predicted(:));
