@@ -46,20 +46,20 @@ k_cb= accuracy_result_cb(find(accuracy_result_cb == accuracy_cb,1),2);
 
 % test con il training set e il K migliore
 if(accuracy_cb > accuracy_eu)
-    disp('Test con training set e KNN con distanza cityblock');
+    %disp('Test con training set e KNN con distanza cityblock');
     [result_train_cb,~,c_cb]= knn(cv2_trainValues,cv2_trainLabels,cv2_validationValues,cv2_validationLabels,k_cb,'cityblock');
 else
-    disp('Test con training set e KNN con distanza euclidea');
+    %disp('Test con training set e KNN con distanza euclidea');
     [result_train_eu,~,c_eu]= knn(cv2_trainValues,cv2_trainLabels,cv2_validationValues,cv2_validationLabels,k_eu,'euclidean');
 end
 
 % test con il test set inziale e il K migliore
 if(accuracy_cb > accuracy_eu)
-  disp('Test con test set e KNN con distanza cityblock');
+  %disp('Test con test set e KNN con distanza cityblock');
   test_predicted = predict(c_cb, cv1_testValues);
   test_perf = confmat(cv1_testLabels, test_predicted);
 else
-  disp('Test con test set e KNN con distanza euclidea');
+  %disp('Test con test set e KNN con distanza euclidea');
   test_predicted = predict(c_eu, cv1_testValues);
   test_perf = confmat(cv1_testLabels, test_predicted);
 end
