@@ -7,7 +7,7 @@
   % stringa, che indica la tipogia di funzione di distanza da utilizzare
   % per il classificatore KNN.
   % La funzione ritorna le performance del classificatore in fase di training e in
-  % fase di test (o validation).
+  % fase di test (o validation) e il vero e proprio classificatore.
 function [train_perf, test_perf,c] = knn(train_values,train_labels,test_values,test_labels, k, distance)
   c = fitcknn(train_values, train_labels,'NumNeighbors',k, 'Distance', distance);
   
