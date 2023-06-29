@@ -51,12 +51,12 @@ if(accuracy_cb > accuracy_eu)
     % Distanza city block
     [result_train_cb,~,c_cb]= knn(cv2_trainValues,cv2_trainLabels,cv2_validationValues,cv2_validationLabels,k_cb,'cityblock');
     class_file_name='c_cb.mat';
-    save('c_cb.mat','c_cb');
+    %save('c_cb.mat','c_cb');
 else
     % Distanza euclidea
     [result_train_eu,~,c_eu]= knn(cv2_trainValues,cv2_trainLabels,cv2_validationValues,cv2_validationLabels,k_eu,'euclidean');
     class_file_name='c_eu.mat';
-    save('c_eu.mat','c_eu');
+    %save('c_eu.mat','c_eu');
 end
 
 % test con il test set inziale e il K migliore
@@ -72,5 +72,5 @@ end
 
 % test con il test set e il classificatore SVM
 [result_train_svm, result_test_svm,c_svm]= svm(cv1_trainValues,cv1_trainLabels,cv1_testValues,cv1_testLabels);
-save('c_svm.mat','c_svm');
-save('data.mat','lbp','k_cb','k_eu','class_file_name','cv1_trainLabels','cv1_trainValues','cv1_testLabels','cv1_testValues')
+%save('c_svm.mat','c_svm');
+%save('data.mat','lbp','k_cb','k_eu','class_file_name','cv1_trainLabels','cv1_trainValues','cv1_testLabels','cv1_testValues')
