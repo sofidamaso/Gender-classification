@@ -4,8 +4,8 @@
   % In input vengono forniti sia i valori che le labels, sia per il
   % training set che per il test set (o validation set). 
   % La funzione ritorna le performance del classificatore in fase di training e in
-  % fase di test (o validation).
-function [train_perf, test_perf] = svm(train_values,train_labels,test_values,test_labels)
+  % fase di test (o validation) e il vero e proprio classificatore.
+function [train_perf, test_perf,c] = svm(train_values,train_labels,test_values,test_labels)
   c= fitcsvm(train_values,train_labels);        
 
   train_predicted = predict(c, train_values);

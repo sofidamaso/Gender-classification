@@ -1,6 +1,5 @@
 %salva un file .xls contenente le labels 
-clear all;
-close all;
+clear;
 data = fileread('images_list.list');
 x = strsplit(data);
 gender_labels=[];
