@@ -27,6 +27,7 @@ accuracy_result_eu= [];
 validation_eu= [];
 accuracy_result_cb= [];
 validation_cb= [];
+
 % distanza euclidea
 for k=1:2:20
     [train_result, validation_result,~] = knn(cv2_trainValues,cv2_trainLabels,cv2_validationValues,cv2_validationLabels,k,'euclidean');
@@ -35,6 +36,7 @@ for k=1:2:20
 end
 accuracy_eu= max(accuracy_result_eu(:,1));
 k_eu= accuracy_result_eu(find(accuracy_result_eu == accuracy_eu,1),2);
+
 % distanza cityblock
 for k=1:2:20
     [train_result, validation_result,~] = knn(cv2_trainValues,cv2_trainLabels,cv2_validationValues,cv2_validationLabels,k,'cityblock');
@@ -46,12 +48,14 @@ k_cb= accuracy_result_cb(find(accuracy_result_cb == accuracy_cb,1),2);
 
 % test con il training set e il K migliore
 if(accuracy_cb > accuracy_eu)
-    %disp('Test con training set e KNN con distanza cityblock');
+    % Distanza city block
     [result_train_cb,~,c_cb]= knn(cv2_trainValues,cv2_trainLabels,cv2_validationValues,cv2_validationLabels,k_cb,'cityblock');
+    class_file_name='c_cb.mat';
     save('c_cb.mat','c_cb');
 else
-    %disp('Test con training set e KNN con distanza euclidea');
+    % Distanza euclidea
     [result_train_eu,~,c_eu]= knn(cv2_trainValues,cv2_trainLabels,cv2_validationValues,cv2_validationLabels,k_eu,'euclidean');
+    class_file_name='c_eu.mat';
     save('c_eu.mat','c_eu');
 end
 
@@ -69,4 +73,4 @@ end
 % test con il test set e il classificatore SVM
 [result_train_svm, result_test_svm,c_svm]= svm(cv1_trainValues,cv1_trainLabels,cv1_testValues,cv1_testLabels);
 save('c_svm.mat','c_svm');
-save('data.mat','lbp','k_cb','k_eu','cv1_trainLabels','cv1_trainValues','cv1_testLabels','cv1_testValues')
+save('data.mat','lbp','k_cb','k_eu','class_file_name','cv1_trainLabels','cv1_trainValues','cv1_testLabels','cv1_testValues')
