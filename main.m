@@ -3,7 +3,7 @@ clear;
 nimages = numel(images);
 lbp =[];
  for n = 1 : nimages
-    im = imread(['gender-feret-master-union\gender-feret-master\' images{n}]);
+    im = imread(['gender-feret-master-union/gender-feret-master/' images{n}]);
     lbp  = [lbp;compute_lbp(im)];
  end
 
