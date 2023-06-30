@@ -3,7 +3,7 @@
 % 1) la matrice di confusione 
 % 2) la matrice di confusione con valori tra 0 e 1
 % 3) l'elenco ordinato delle labels
-% 4) il valore di accuratezza accuratezza
+% 4) il valore di accuratezza 
 function out=confmat(gt,predicted)
 
   [cm_raw,order]=confusionmat(gt(:),predicted(:));

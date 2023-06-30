@@ -4,7 +4,7 @@
   % In input vengono forniti sia i valori che le labels, sia per il
   % training set che per il test set (o validation set). Inoltre vengono
   % passati anche il valore di K (numero di vicini da considerare) e una
-  % stringa, che indica la tipogia di funzione di distanza da utilizzare
+  % stringa, che indica la tipologia di funzione di distanza da utilizzare
   % per il classificatore KNN.
   % La funzione ritorna le performance del classificatore in fase di training e in
   % fase di test (o validation) e il vero e proprio classificatore.
