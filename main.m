@@ -1,4 +1,5 @@
 clear;
+close all;
 [images, labels]= readlists();
 nimages = numel(images);
 lbp =[];
@@ -34,6 +35,12 @@ for k=1:2:20
     validation_eu= [validation_eu; validation_result];
     accuracy_result_eu= [accuracy_result_eu; validation_result.accuracy, k];
 end
+figure (1)
+plot(accuracy_result_eu(:,2),accuracy_result_eu(:,1))
+title('Valori di k e rispettive accuracy per KNN con distanza Euclidea')
+xlabel('Valori di k') 
+ylabel('Accuracy') 
+
 accuracy_eu= max(accuracy_result_eu(:,1));
 k_eu= accuracy_result_eu(find(accuracy_result_eu == accuracy_eu,1),2);
 
@@ -43,6 +50,12 @@ for k=1:2:20
     validation_cb= [validation_cb; validation_result];
     accuracy_result_cb= [accuracy_result_cb; validation_result.accuracy, k];
 end
+figure (2)
+plot(accuracy_result_cb(:,2),accuracy_result_cb(:,1))
+title('Valori di k e rispettive accuracy per KNN con distanza City Block')
+xlabel('Valori di k') 
+ylabel('Accuracy') 
+
 accuracy_cb= max(accuracy_result_cb(:,1));
 k_cb= accuracy_result_cb(find(accuracy_result_cb == accuracy_cb,1),2);
 
@@ -61,16 +74,18 @@ end
 
 % test con il test set inziale e il K migliore
 if(accuracy_cb > accuracy_eu)
-  %disp('Test con test set e KNN con distanza cityblock');
+  disp('Test con test set e KNN con distanza cityblock');
   test_predicted = predict(c_cb, cv1_testValues);
-  test_perf = confmat(cv1_testLabels, test_predicted);
+  test_perf = confmat(cv1_testLabels, test_predicted)
 else
-  %disp('Test con test set e KNN con distanza euclidea');
+  disp('Test con test set e KNN con distanza euclidea');
   test_predicted = predict(c_eu, cv1_testValues);
-  test_perf = confmat(cv1_testLabels, test_predicted);
+  test_perf = confmat(cv1_testLabels, test_predicted)
 end
 
 % test con il test set e il classificatore SVM
+disp('Test con test set e SVM');
 [result_train_svm, result_test_svm,c_svm]= svm(cv1_trainValues,cv1_trainLabels,cv1_testValues,cv1_testLabels);
-%save('c_svm.mat','c_svm');
-%save('data.mat','lbp','k_cb','k_eu','class_file_name','cv1_trainLabels','cv1_trainValues','cv1_testLabels','cv1_testValues')
+disp(result_test_svm);
+% save('c_svm.mat','c_svm');
+% save('data.mat','lbp','k_cb','k_eu','class_file_name','cv1_trainLabels','cv1_trainValues','cv1_testLabels','cv1_testValues')
