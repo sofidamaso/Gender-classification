@@ -1,7 +1,7 @@
 %salva un file .xls contenente le labels 
 clear;
 data = fileread('images_list.list');
-x = strsplit(data);
+x = str(data);
 gender_labels=[];
 for i=1 : numel(x)         %se il nome dell'immagine inizia per F per costruzione è una femmina
     if x{i}(1)=='F'
