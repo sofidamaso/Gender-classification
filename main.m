@@ -74,18 +74,28 @@ end
 
 % test con il test set inziale e il K migliore
 if(accuracy_cb > accuracy_eu)
-  disp('Test con test set e KNN con distanza cityblock');
+  s= sprintf('Matrice di confusione con distanza Euclidea e k= %d',k_cb);
+  disp(s);
   test_predicted = predict(c_cb, cv1_testValues);
-  test_perf = confmat(cv1_testLabels, test_predicted)
+  test_perf = confmat(cv1_testLabels, test_predicted);
+  disp(test_perf.cm);
+  a= sprintf('Accuracy sul test set: %f \n',test_perf.accuracy);
+  disp(a); 
 else
-  disp('Test con test set e KNN con distanza euclidea');
+  s= sprintf('Matrice di confusione con distanza Euclidea e k= %d',k_eu);
+  disp(s);
   test_predicted = predict(c_eu, cv1_testValues);
-  test_perf = confmat(cv1_testLabels, test_predicted)
+  test_perf = confmat(cv1_testLabels, test_predicted);
+  disp(test_perf.cm);
+  a= sprintf('Accuracy sul test set: %f \n',test_perf.accuracy);
+  disp(a); 
 end
 
 % test con il test set e il classificatore SVM
-disp('Test con test set e SVM');
+disp('Matrice di confusione classificatore SVM');
 [result_train_svm, result_test_svm,c_svm]= svm(cv1_trainValues,cv1_trainLabels,cv1_testValues,cv1_testLabels);
-disp(result_test_svm);
+disp(result_test_svm.cm);
+a= sprintf('Accuracy sul test set: %f \n',result_test_svm.accuracy);
+disp(a); 
 % save('c_svm.mat','c_svm');
 % save('data.mat','lbp','k_cb','k_eu','class_file_name','cv1_trainLabels','cv1_trainValues','cv1_testLabels','cv1_testValues')
