@@ -14,6 +14,7 @@ if strcmp(class_file_name,'c_cb.mat') == 1
     test_predicted = predict(c_cb, cv1_testValues);
     test_perf = confmat(cv1_testLabels, test_predicted);
     disp(test_perf.cm);
+    disp(test_perf.cm_raw);
     a= sprintf('Accuracy sul test set: %f \n',test_perf.accuracy);
     disp(a);
 else
@@ -24,6 +25,7 @@ else
         test_predicted = predict(c_eu, cv1_testValues);
         test_perf = confmat(cv1_testLabels, test_predicted);
         disp(test_perf.cm);
+        disp(test_perf.cm_raw);
         a= sprintf('Accuracy sul test set: %f \n',test_perf.accuracy);
         disp(a); 
     end
@@ -33,5 +35,6 @@ disp('Matrice di confusione classificatore SVM');
 test_predicted = predict(c_svm, cv1_testValues);
 test_perf = confmat(cv1_testLabels, test_predicted);
 disp(test_perf.cm);
+disp(test_perf.cm_raw);
 a= sprintf('Accuracy sul test set: %f \n',test_perf.accuracy);
 disp(a);
